@@ -1,9 +1,24 @@
-Over the past six months, I have demonstrated strong technical capability, accountability, and collaboration across production support, automation, and platform delivery activities.
+Over the past six months, I have demonstrated strong technical capability, 
+accountability, and collaboration across production support, automation, 
+and platform delivery activities.
 
-I contributed to improving operational reliability and reducing delivery risk by supporting application uplift activities aligned with cyber security and platform requirements. This included improving production stability, supporting automation to reduce manual intervention, and investigating recurring operational issues to improve maintainability and service continuity.
+I contributed to improving operational reliability and reducing delivery
+risk by supporting application uplift activities aligned with cyber security 
+and platform requirements. This included improving production stability, 
+supporting automation to reduce manual intervention, and investigating recurring operational issues to improve maintainability and service continuity.
 
-I worked collaboratively across multiple branches and technical teams, including Applied Intelligence, Data Science, Data Engineering, Cyber Security, and Data Lake teams, to support production readiness and operational outcomes. This required coordinating requirements across different areas, aligning technical changes with operational expectations, and building effective working relationships to support shared delivery goals.
+I worked collaboratively across multiple branches and technical teams, 
+including Applied Intelligence, Data Science, Data Engineering,
+Cyber Security, and Data Lake teams, to support production readiness 
+and operational outcomes. This required coordinating requirements 
+across different areas, aligning technical changes with operational 
+expectations, and building effective working relationships to support shared delivery goals.
 
-I also contributed to broader team capability through knowledge sharing, technical handovers, environment support, documentation, Git workflow guidance, and constructive input during architecture and design discussions. This supported smoother transitions, improved collaboration across teams, and more sustainable support practices.
+I also contributed to broader team capability through knowledge sharing, 
+technical handovers, environment support, documentation, Git workflow guidance, 
+and constructive input during architecture and design discussions. This supported 
+smoother transitions, improved collaboration across teams, and more sustainable support practices.
 
-Throughout this period, I maintained a collaborative and customer-focused approach to problem solving while contributing to operational continuity, reliable service delivery, and ongoing capability uplift within the section.
+Throughout this period, I maintained a collaborative and customer-focused approach 
+to problem solving while contributing to operational continuity, reliable service 
+delivery, and ongoing capability uplift within the section.
