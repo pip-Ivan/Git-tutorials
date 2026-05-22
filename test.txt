@@ -1,1 +1,206 @@
-He
+================================================================================
+1. Describe a time you needed to collaborate and develop trust from a stakeholder
+================================================================================
+
+Situation
+The Chat Analysis Tool (CAT) is used by business stakeholders, including the
+Digital Assistant team, to analyse customer interaction trends and support
+evidence-based improvements to chatbot responses. At the time, stakeholder
+confidence in the tool had reduced.
+
+The application was unstable, required frequent manual restarts, and did not
+fully meet business expectations around user access and reliability. Users could
+not consistently rely on the tool when they needed it, which had created
+tangible frustration and eroded trust in the service.
+
+Task
+My task was to support improvements to CAT while helping rebuild trust with
+dissatisfied stakeholders. This required more than technical fixes. I needed to
+understand what users actually needed, gather clear requirements, manage
+expectations through the process, and ensure the final outcome addressed both
+the reliability issues and the confidence gap that had developed.
+
+Action
+I began by focusing on the stakeholder relationship rather than moving
+immediately to solutions. I listened to the concerns raised by business users
+and clarified what success would look like from their perspective: stable
+access, appropriate user permissions, fewer disruptions, and confidence that
+issues raised would be followed through.
+
+Working collaboratively with stakeholders, I gathered and refined requirements
+for authentication and role-based access, ensuring that different users could
+access the functions relevant to their work while maintaining appropriate
+controls. During testing, I actively sought feedback, responded to issues
+promptly, and supported hotfixes where needed to ensure the solution met user
+expectations rather than simply satisfying the technical specification.
+
+To address the reliability concerns, I investigated the recurring instability
+and worked with the Data Lake team to identify the underlying
+environment-related causes. I supported improvements to monitoring and
+automated restarts to reduce the need for manual intervention and improve
+day-to-day availability.
+
+Throughout the work, I communicated progress clearly, was transparent about
+risks and timeframes, and kept stakeholders involved in shaping the solution
+rather than presenting them with a finished outcome. This consistency of
+follow-through was as important to rebuilding trust as the technical
+improvements themselves.
+
+Result
+Stakeholder sentiment shifted from dissatisfaction to confidence in the
+application. CAT became more stable, access controls better reflected business
+requirements, and users experienced fewer disruptions to their work. The
+collaborative approach to testing and requirements ensured the changes genuinely
+addressed user needs, and the visible follow-through on commitments helped
+restore the working relationship on a stronger footing than before.
+
+
+================================================================================
+2. Describe a time you helped someone understand the strategic direction of your
+   area or the business context of a decision
+================================================================================
+
+Situation
+The Data Engineering Operations team supports data processes that need to be
+reliable, traceable, and maintainable for ongoing business use. The team was
+working toward more consistent delivery practices, including clearer
+documentation, shared development processes, and better use of version control.
+
+During this period, a senior technical team member left the agency, creating a
+continuity risk. The challenge was not only to retain technical knowledge, but
+also to help the team understand why these practices mattered to operational
+reliability and sustainable delivery.
+
+Task
+I took responsibility for supporting continuity within the team and helping
+colleagues understand the business context behind the technical practices being
+adopted. My focus was to make the work easier to maintain, reduce reliance on
+individual knowledge, and support a more consistent way of working.
+
+Action
+I built my understanding of the projects by reviewing available materials,
+attending handover discussions, and asking targeted questions. I then supported
+colleagues with practical guidance on development environments, repositories,
+and Git-based workflows.
+
+Rather than only explaining the steps, I connected the practices to business
+outcomes. I explained that version control improves traceability, documentation
+supports continuity, and consistent ways of working reduce avoidable errors and
+operational risk. This helped colleagues understand how their day-to-day
+technical work contributed to reliable data operations.
+
+I also recorded walkthroughs, documented key processes, and encouraged
+questions to facilitate broader knowledge sharing across the team. My approach
+was to lead with clarity and practical support, ensuring people understood both
+what needed to be done and why it mattered.
+
+Result
+The team maintained continuity after the staff transition and became more
+confident working with the projects independently. The team retained key
+knowledge, reduced reliance on any single person, and developed a clearer
+understanding of how structured delivery practices supported operational
+reliability.
+
+
+================================================================================
+3. Describe a time you led by demonstrating continuous growth, emotional
+   intelligence or respect
+================================================================================
+
+Situation
+While working with the Data Engineering Operations team, I became involved in
+DevOps-related work including GitLab workflows, merge requests, pipeline
+behaviour, and release processes. These practices were important to support
+safer, more consistent, and more repeatable delivery. However, parts of the
+process were new to me and to some colleagues, and issues arising from gaps in
+understanding could create confusion or delays.
+
+Task
+I needed to develop my own capability quickly while supporting colleagues
+respectfully through the same learning curve. My aim was to help resolve issues
+as they arose, reduce confusion, and contribute to a more confident and
+constructive working environment.
+
+Action
+I built my understanding systematically — reviewing existing repositories,
+testing workflow behaviour, reading configuration files carefully, and asking
+targeted questions when I needed clarification. When issues occurred, I focused
+on understanding the root cause rather than making assumptions.
+
+I supported colleagues by explaining processes clearly, sharing what I had
+learned, and helping troubleshoot issues in a calm and practical way. I was
+deliberate about treating problems as shared learning opportunities rather than
+individual mistakes, which helped maintain trust and made it easier for others
+to raise questions without hesitation.
+
+Where I identified gaps, I suggested practical improvements such as clearer
+documentation, more structured workflows, and better visibility of common
+issues — with the aim of making the process easier to follow in future, not
+just resolving the immediate problem.
+
+Result
+My own capability in DevOps and CI/CD strengthened meaningfully over this
+period, and colleagues became more confident working within the processes
+independently. The team benefited from clearer guidance, improved shared
+understanding, and a more collaborative approach to resolving technical issues.
+By focusing on both the technical and interpersonal dimensions of the work, the
+team was better placed to handle similar challenges without escalation or
+disruption.
+
+
+================================================================================
+4. Describe a time you found a solution to a technical, ethical or complex
+   problem
+================================================================================
+
+Situation
+I worked on the Australian Government Disaster Recovery Payment project, which
+used a machine learning model to support and enhance the existing fraud
+detection strategy. A key issue was that model outputs needed to be retained
+reliably so they could be reviewed and traced during operational use. If outputs
+were not captured consistently, there was a risk that relevant information could
+be missed, reducing confidence in the model's contribution to fraud detection
+activities.
+
+The complexity was that the solution needed to work in a production environment,
+meet security expectations, and preserve the model's existing behaviour. It was
+not enough to make outputs visible during testing; they needed to be captured
+consistently, stored appropriately, and remain reliable after deployment.
+
+Task
+I was responsible for updating the application so that model outputs could be
+logged in a structured way and stored reliably in the production environment.
+I also needed to test the deployment in OpenShift and review package
+vulnerabilities to support cyber security requirements. My focus was to improve
+traceability and reliability without introducing unnecessary change or release
+risk.
+
+Action
+The first step was to clarify the operational problem: the priority was not
+simply producing model results, but ensuring those results were retained in a
+consistent and traceable way. A review of the application flow established where
+outputs could be captured and how they needed to be stored for later use.
+
+I updated the application so that outputs were written in a structured format
+and connected to the appropriate storage configuration. I then tested the
+deployment to confirm the logs were created, stored, and available as expected
+in the production-like environment. This was important because changes that work
+locally may not behave consistently once deployed.
+
+Package vulnerabilities were also reviewed to support the cyber security
+process, with checks confirming that any required updates did not affect the
+application's expected behaviour. Throughout, changes were kept focused and
+practical, risks were raised early, and modifications to the model logic were
+avoided where possible.
+
+Result
+The updated implementation improved the reliability and traceability of model
+outputs, reducing the risk that relevant fraud detection information would be
+missed during operational use. The solution also met cyber security expectations
+and provided a more reliable basis for handover to the Applied Intelligence team
+for release preparation.
+
+Ongoing engagement after handover has helped ensure the solution remains
+maintainable and continues to meet operational needs as further requirements
+emerge.
+================================================================================
