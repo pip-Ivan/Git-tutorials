@@ -1,1 +1,231 @@
+================================================
 
+Hi,
+
+I have gone through the comments and addressed them. Please find the final version below
+for your consideration.
+
+
+
+
+
+OPENING STATEMENT
+My recent achievements against the professional and technical capabilities in my role
+------------------------------------------------------------------------------------------
+
+My recent work has been defined by ownership, sound judgement and genuine
+collaboration across divisions, branches and technical teams.
+
+Working on the Chat Analysis Tool (CAT), I rebuilt a strained relationship with internal
+business users by listening carefully, refining authentication and access requirements
+with them, and restoring stability through automated monitoring. Confidence in the
+service moved from open frustration back to active reliance.
+
+Within the **Data Engineering Operations team, I supported colleagues through a senior
+staff transition by leading sessions on the GitLab workflow and connecting technical
+practice to the business outcomes it protected, lifting consistency and confidence
+across the group. Alongside this, I built my own capability in DevOps and CI/CD
+deliberately, resolving real pipeline issues, walking colleagues through the reasoning
+behind fixes, and treating problems as shared learning.
+
+On the **Australian Government Disaster Recovery Payment (AGDRP) project, I delivered a complex
+change that made the fraud detection model's outputs reliably traceable in production,
+exercising careful judgement on **change and release risk**, validating under realistic
+claim volume, and engaging the right teams early so the work landed cleanly. Together,
+these contributions support operational continuity, reliable service delivery and
+meaningful capability uplift across the agency.
+
+==========================================================================================
+QUESTION 1
+Describe a time you needed to collaborate and develop trust from a stakeholder
+==========================================================================================
+
+Situation
+The Chat Analysis Tool (CAT) is used by internal business areas, including the Digital
+Assistant team, to analyse customer interaction trends and inform evidence based
+improvements to chatbot responses. By the time I picked up the work, confidence in the
+tool had visibly eroded. The application was unstable, required frequent manual restarts,
+and fell short of business expectations around user access and reliability. Users could
+not depend on the tool when they actually needed it, and that frustration had settled into
+a noticeable trust gap between the business and the delivery team.
+
+Task
+I took ownership of improving CAT and decided early that the technical fixes alone would
+not be enough. To deliver something the business would genuinely rely on, I had to bring
+the dissatisfied stakeholders into the work, understand the experience from their side,
+and shape the solution alongside them rather than for them.
+
+Action
+I started by setting up a series of meetings with the affected business users and
+listening carefully to what was actually getting in their way, rather than relying on
+tickets or second hand summaries. Together we shaped a clear picture of what good looked
+like from their side: stable access, role appropriate permissions, fewer disruptions, and
+confidence that issues raised would be followed through.
+
+I then worked collaboratively to refine the requirements for authentication and role based
+access. As the build progressed I organised follow up sessions to walk the business
+through the changes, invited their feedback openly, and adjusted the work in response so
+the final version reflected what we had agreed together. That iterative loop changed the
+tone of the work; it became a shared effort rather than a delivery being pushed at them.
+
+To address the reliability concerns I introduced an automated monitoring job that improved
+day to day availability and substantially reduced the manual restarts that had been
+frustrating users. Throughout, I kept communication consistent and honest about progress,
+risk and timeframes, so the business stayed close to the work rather than waiting on a
+finished product.
+
+Result
+Stakeholder sentiment moved from open frustration to active confidence in the tool. CAT
+became materially more stable, access reflected how the business actually operated, and
+disruptions to daily work dropped away. The collaborative way the work was done also left
+the relationship in a stronger place than before the issues started. The Digital Assistant
+team now engages with CAT as a constructive partner, which has made subsequent
+improvements noticeably easier to land.
+
+==========================================================================================
+QUESTION 2
+Describe a time you helped someone understand the strategic direction of your area
+or the business context of a decision
+==========================================================================================
+
+Situation
+The Data Engineering Operations team supports data processes that must remain reliable,
+traceable and maintainable for ongoing business use. The team was moving toward more
+consistent delivery practices, including clearer documentation, shared development
+standards and disciplined use of version control. When a senior technical team member left
+the agency, the transition created a natural moment to strengthen the team's shared
+understanding of why these practices mattered for safe and sustainable delivery.
+
+Task
+After joining the team and building my own understanding through handover discussions and
+existing materials, I took on the task of helping colleagues see the business reasoning
+behind the delivery practices being adopted, particularly around version control and the
+GitLab workflow. Lifting the team's shared understanding of why the process existed would
+directly support more consistent delivery, stronger operational reliability and a more
+confident way of working across the group.
+
+Action
+I organised several team sessions where we worked through the GitLab workflow
+collaboratively rather than as a one way explanation. We walked through how changes moved
+from a working branch through review and approval before reaching the main branch, and I
+supported colleagues where they had less exposure. Treating the sessions as a shared
+discussion meant people brought real examples from their own work, which kept the
+conversation practical and grounded.
+
+I connected each practice back to a clear business outcome: version control protects
+traceability of changes to production data processes, reviews on merge requests reduce the
+risk of avoidable errors reaching downstream consumers, and disciplined branching makes
+releases predictable and recoverable. Framed this way, the workflow became a delivery
+safeguard in the team's eyes rather than overhead, and gave them a sounder basis for
+judgement when situations arose that the documentation did not directly cover.
+
+The sessions were recorded by the team for later reference, and I continued to support
+colleagues informally as questions came up in day to day work.
+
+Result
+The team carried the work forward confidently through the staff transition, with knowledge
+retained across the group. Delivery practice became more consistent, and colleagues were
+better placed to apply judgement on new situations because they understood what the
+workflow was protecting. The recorded sessions continued to be a useful reference for the
+team. For me, the work strengthened my own grasp of how disciplined delivery supports
+operational reliability and how to translate technical practice into business value.
+
+==========================================================================================
+QUESTION 3
+Describe a time you led by demonstrating continuous growth, emotional intelligence
+or respect
+==========================================================================================
+
+Situation
+Soon after joining the Data Engineering Operations team, I picked up work on a GitLab
+CI/CD pipeline for one of the team's database repositories. The pipeline was still
+maturing and carried real quirks, including merge request templates not appearing as
+expected and workflow rules behaving inconsistently across branches. The territory was
+unfamiliar in places, for me and for some colleagues, and the way issues were handled
+would shape how confident the team felt working in the pipeline going forward.
+
+Task
+I set out to build my own capability at pace and to lead by how I engaged with the work.
+As I worked through real issues in the pipeline, I wanted to bring colleagues alongside
+respectfully, keep the tone constructive when things went wrong, and leave the pipeline
+and the team in a stronger position than I found them.
+
+Action
+I built my understanding deliberately. When the pipeline behaved unexpectedly, I read the
+configuration carefully, traced how variables were scoped, and tested how rules fired
+across branches before asking targeted questions. The MR templates, for example, were not
+surfacing because the template files sat on a non default branch; in another case a
+project level variable was quietly overriding the dynamic workflow rules. Working these
+out cleanly, rather than guessing, made the explanations I later shared with colleagues
+grounded and reliable.
+
+How I engaged with people was equally deliberate. When a colleague hit something I had
+already worked through, I walked them through the reasoning rather than only the fix, so
+the understanding carried forward. When I was the one stuck, I said so plainly. I treated
+problems as shared learning rather than individual mistakes, which kept conversations open
+and meant issues were raised early rather than after they had grown. Where something was
+likely to trip the next person up, I surfaced it for the team to learn from once.
+
+Result
+The pipeline became more reliable and easier to work in, and the team grew noticeably more
+confident operating within it. Questions came up earlier, issues were resolved with less
+friction, and the tone stayed constructive even under pressure. My own capability in
+DevOps and CI/CD strengthened meaningfully alongside the team's, and the experience
+reinforced for me that integrity and respect in how you show up shape the working
+environment as much as what you deliver.
+
+==========================================================================================
+QUESTION 4
+Describe a time you found a solution to a technical, ethical or complex problem
+==========================================================================================
+
+Situation
+I worked on the Australian Government Disaster Recovery Payment project, where a machine
+learning model had been introduced to support the existing fraud detection strategy. The
+model was producing useful results, but its outputs were not being retained reliably once
+the application moved beyond test conditions. The complexity sat in the constraints around
+the fix. The output format and capture had to change without disturbing the surrounding
+code structure or the model's existing behaviour, and the change had to hold up not only
+in local testing but also in a production environment simulation under the volume of real
+payment claim activity, where edge cases that never appear in isolated tests can surface
+quickly.
+
+Task
+After an initial clarification with my manager to confirm the intent and boundaries of the
+work, I took on the task of making the model's outputs reliably traceable in production,
+deploying and validating the change in OpenShift, and reviewing package vulnerabilities to
+support cyber security. The goal was to improve traceability and reliability without
+introducing avoidable change or release risk into a model the business already relied on.
+
+Action
+I started by reframing the problem. The real requirement was not simply to produce model
+results, but to ensure those results were retained in a form the business could trust and
+trace later, while leaving the surrounding application and model behaviour untouched. That
+framing shaped each decision that followed.
+
+I reviewed the application flow to identify the right points to capture outputs, then
+adjusted the output format and connected it to the appropriate storage, working within the
+existing code structure rather than reshaping it. I deployed the change in OpenShift and
+validated it end to end under a production environment simulation with realistic payment
+claim volume, which surfaced behaviours that local testing alone would not have revealed.
+
+Across the work I stayed close to the teams involved. I met with relevant teams for
+clarification on operational expectations and to invite feedback on the captured results,
+so the format and content of the logs reflected what would actually be useful downstream
+rather than only what was technically convenient. In parallel I worked through the package
+vulnerability review, weighing each required update against the risk of altering model
+behaviour, and raised any ambiguity early rather than absorbing the decision alone.
+
+Result
+Model outputs are now reliably captured and traceable in production, closing a real gap in
+the fraud detection pipeline. The change met cyber security expectations and was handed
+over to the Applied Intelligence team in a state they could release with confidence. I
+have continued supporting the work as further requirements have surfaced, which has helped
+keep the solution maintainable rather than becoming fragile over time. The experience
+reinforced for me the value of framing a problem precisely, validating under realistic
+conditions, and staying close to the teams who rely on the output, particularly in
+production settings where small misjudgements carry disproportionate cost.
+
+==========================================================================================
+                                END OF WORKBOOK RESPONSES                                 
+==========================================================================================
