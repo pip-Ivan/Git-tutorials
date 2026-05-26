@@ -1,0 +1,177 @@
+# ============================================================
+# Unit Tests — Domain-specific SQL Object Validation
+# Included by: .gitlab/pipelines/database.yml
+# ============================================================
+
+unit_test_sql_objects:
+  stage: test
+  needs:
+    - job: build_database_artifacts
+      artifacts: true
+  <<: *sql_cache
+  rules:
+    - if: '$CHANGE_TYPE == "feature" || $CHANGE_TYPE == "bugfix" || $CHANGE_TYPE == "hotfix"'
+  script:
+    - echo "Running domain-specific SQL unit tests ..."
+    - mkdir -p reports
+    - |
+      REPORT="reports/unit_tests.xml"
+      PASS=0; FAIL=0; CASES=""
+
+      run_test() {
+        local name="$1" result="$2" message="$3"
+        if [ "$result" = "pass" ]; then
+          PASS=$((PASS+1))
+          echo "  PASS: $name"
+          CASES="$CASES<testcase classname=\"sql.unit\" name=\"$name\"/>"
+        else
+          FAIL=$((FAIL+1))
+          echo "  FAIL: $name — $message"
+          CASES="$CASES<testcase classname=\"sql.unit\" name=\"$name\"><failure message=\"$message\"/></testcase>"
+        fi
+      }
+
+      DEPS_CSV="table_dependencies/curated_table_dependencies.csv"
+
+      # ── TEST 1 ───────────────────────────────────────────
+      # Every table in CSV (LEVEL=1) must have a matching file in sql_level_1/
+      echo "── Test 1: CSV LEVEL=1 tables exist in sql_level_1/"
+      MISSING=""
+      while IFS=',' read -r table level deps; do
+        [ "$level" = "1" ] || continue
+        if ! find sql_level_1 -name "${table}.sql" -o -name "${table}.hql" | grep -q .; then
+          MISSING="$MISSING $table"
+        fi
+      done < <(tail -n +2 "$DEPS_CSV")
+      [ -z "$MISSING" ] \
+        && run_test "CSV LEVEL=1 tables present in sql_level_1/" "pass" "" \
+        || run_test "CSV LEVEL=1 tables present in sql_level_1/" "fail" "Missing:$MISSING"
+
+      # ── TEST 2 ───────────────────────────────────────────
+      # Every table in CSV (LEVEL=2) must have a matching file in sql_level_2/
+      echo "── Test 2: CSV LEVEL=2 tables exist in sql_level_2/"
+      MISSING=""
+      while IFS=',' read -r table level deps; do
+        [ "$level" = "2" ] || continue
+        if ! find sql_level_2 -name "${table}.sql" -o -name "${table}.hql" | grep -q .; then
+          MISSING="$MISSING $table"
+        fi
+      done < <(tail -n +2 "$DEPS_CSV")
+      [ -z "$MISSING" ] \
+        && run_test "CSV LEVEL=2 tables present in sql_level_2/" "pass" "" \
+        || run_test "CSV LEVEL=2 tables present in sql_level_2/" "fail" "Missing:$MISSING"
+
+      # ── TEST 3 ───────────────────────────────────────────
+      # Every file in sql_level_1/ and sql_level_2/ must be registered in the CSV
+      echo "── Test 3: All sql_level files registered in dependency CSV"
+      UNREGISTERED=""
+      for f in $(find sql_level_1 sql_level_2 -type f \( -name "*.sql" -o -name "*.hql" \)); do
+        base=$(basename "$f" | sed 's/\.[^.]*$//')
+        if ! grep -qi "^${base}," "$DEPS_CSV"; then
+          UNREGISTERED="$UNREGISTERED $base"
+        fi
+      done
+      [ -z "$UNREGISTERED" ] \
+        && run_test "All sql_level files registered in CSV" "pass" "" \
+        || run_test "All sql_level files registered in CSV" "fail" "Unregistered:$UNREGISTERED"
+
+      # ── TEST 4 ───────────────────────────────────────────
+      # All dependencies in CSV must be fully qualified (schema.table format)
+      echo "── Test 4: All CSV dependencies are schema.table qualified"
+      BAD_DEPS=""
+      while IFS=',' read -r table level deps; do
+        [ "$table" = "TABLE" ] && continue
+        IFS='|' read -ra dep_arr <<< "$deps"
+        for dep in "${dep_arr[@]}"; do
+          dep=$(echo "$dep" | tr -d '[:space:]')
+          if [[ ! "$dep" == *.* ]]; then
+            BAD_DEPS="$BAD_DEPS ${table}→${dep}"
+          fi
+        done
+      done < "$DEPS_CSV"
+      [ -z "$BAD_DEPS" ] \
+        && run_test "All CSV dependencies are schema.table qualified" "pass" "" \
+        || run_test "All CSV dependencies are schema.table qualified" "fail" "Not qualified:$BAD_DEPS"
+
+      # ── TEST 5 ───────────────────────────────────────────
+      # hive_view/ files must use CREATE VIEW (not CREATE TABLE)
+      # and target the CDL layer (prod_*_cdl_priv schema)
+      echo "── Test 5: hive_view files use CREATE VIEW targeting cdl_priv schema"
+      BAD_VIEWS=""
+      for f in $(find hive_view -name "*.hql"); do
+        if ! grep -qi "CREATE VIEW" "$f"; then
+          BAD_VIEWS="$BAD_VIEWS $(basename $f):no-CREATE-VIEW"
+        fi
+        if ! grep -qi "CREATE VIEW prod_.*_cdl_priv\." "$f"; then
+          BAD_VIEWS="$BAD_VIEWS $(basename $f):not-targeting-cdl_priv"
+        fi
+      done
+      [ -z "$BAD_VIEWS" ] \
+        && run_test "hive_view files target cdl_priv schema" "pass" "" \
+        || run_test "hive_view files target cdl_priv schema" "fail" "$BAD_VIEWS"
+
+      # ── TEST 6 ───────────────────────────────────────────
+      # hive/ files must use CREATE TABLE (not CREATE VIEW)
+      echo "── Test 6: hive/ files use CREATE TABLE not CREATE VIEW"
+      BAD=""
+      for f in $(find hive -name "*.hql"); do
+        if grep -qi "CREATE VIEW" "$f"; then
+          BAD="$BAD $(basename $f)"
+        fi
+      done
+      [ -z "$BAD" ] \
+        && run_test "hive/ files contain no CREATE VIEW" "pass" "" \
+        || run_test "hive/ files contain no CREATE VIEW" "fail" "Views found in hive/:$BAD"
+
+      # ── TEST 7 ───────────────────────────────────────────
+      # LEVEL=2 objects must not depend on other LEVEL=2 objects
+      # (they should only reference LEVEL=1 or source rdl_priv tables)
+      echo "── Test 7: LEVEL=2 tables do not reference other LEVEL=2 tables"
+      L2_TABLES=$(awk -F',' '$2==2 {print $1}' "$DEPS_CSV")
+      CIRCULAR=""
+      while IFS=',' read -r table level deps; do
+        [ "$level" = "2" ] || continue
+        IFS='|' read -ra dep_arr <<< "$deps"
+        for dep in "${dep_arr[@]}"; do
+          dep_table=$(echo "$dep" | cut -d'.' -f2 | tr -d '[:space:]')
+          if echo "$L2_TABLES" | grep -qx "$dep_table"; then
+            CIRCULAR="$CIRCULAR ${table}→${dep_table}"
+          fi
+        done
+      done < <(tail -n +2 "$DEPS_CSV")
+      [ -z "$CIRCULAR" ] \
+        && run_test "No LEVEL=2 circular dependencies" "pass" "" \
+        || run_test "No LEVEL=2 circular dependencies" "fail" "L2→L2 refs:$CIRCULAR"
+
+      # ── TEST 8 ───────────────────────────────────────────
+      # resources/ CSVs must have expected headers (data contract)
+      echo "── Test 8: resources/system_payments_categories_indicator.csv header contract"
+      EXPECTED_HEADER="item_order,src,category,sub_type"
+      ACTUAL_HEADER=$(head -1 resources/system_payments_categories_indicator.csv | cut -d',' -f1-4)
+      [ "$ACTUAL_HEADER" = "$EXPECTED_HEADER" ] \
+        && run_test "system_payments_categories_indicator.csv header valid" "pass" "" \
+        || run_test "system_payments_categories_indicator.csv header valid" "fail" \
+           "Expected '$EXPECTED_HEADER', got '$ACTUAL_HEADER'"
+
+      # ── Write JUnit XML ──────────────────────────────────
+      TOTAL=$((PASS+FAIL))
+      cat <<EOF > "$REPORT"
+      <?xml version="1.0" encoding="UTF-8"?>
+      <testsuites>
+        <testsuite name="SQL Unit Tests - GPTP Database" tests="$TOTAL" failures="$FAIL" errors="0">
+          $CASES
+        </testsuite>
+      </testsuites>
+      EOF
+
+      echo ""
+      echo "Results: $PASS passed, $FAIL failed out of $TOTAL tests."
+      [ "$FAIL" -eq 0 ] || exit 1
+
+  artifacts:
+    when: always
+    reports:
+      junit: reports/unit_tests.xml
+    paths:
+      - reports/
+    expire_in: 1 week
